@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.ict.ex.mapper.EmpMapper">
+    <select id="getList" resultType="edu.ict.ex.vo.EmpVO">
+        select * from emp order by empno
+    </select>
+    
+     <!-- INSERT INTO EMP  VALUES (1111,'홍길동','CLERK',7369,'2024-09-24', 800,8000,10); -->
+    <insert id="insert">
+        INSERT INTO EMP  VALUES (#{empno},#{ename},#{job},#{mgr},#{hiredate2},#{sal},#{comm},#{deptno})
+    </insert>
+    
+    <select id="getTotalCount" resultType="int">
+    	<![CDATA[
+        	select count(*) from emp
+        ]]>
+    </select>
+    
+    <select id="getListWithPaging" resultType="EmpVO">
+    	<![CDATA[
+        SELECT * FROM (
+		     	SELECT ROWNUM AS RNUM, A.* FROM (
+		                    SELECT *  FROM emp order by empno
+		   	 	) A WHERE ROWNUM <= #{pageNum} * #{amount}
+			) WHERE RNUM > (#{pageNum}-1) * #{amount}
+        ]]>
+    </select>
+    
+    
+   <resultMap id="deptMap" type="DeptVO">
+        <result property="deptno" column="deptno"/>
+    	<result property="loc" column="loc"/>
+    	<result property="dname" column="dname"/>    
+   </resultMap>     
+    
+    <resultMap id="empMap" type="EmpVO" >
+    	<id property="empno" column="empno"/>
+    	<result property="ename" column="ename"/>
+    	<result property="job" column="job"/>
+    	<result property="mgr" column="mgr"/>
+    	<result property="hiredate" column="hiredate"/>
+    	<result property="sal" column="sal"/>
+    	<result property="comm" column="comm"/>
+    	<result property="deptno" column="deptno"/>
+    </resultMap>
+    
+    <resultMap id="salgradeMap" type="SalgradeVO">
+        <result property="grade" column="grade"/>
+    	<result property="losal" column="losal"/>
+    	<result property="hisal" column="hisal"/>    
+    </resultMap>
+    
+    <resultMap  id="empSalgradeMap" type="EmpSalgradeVO">
+    	<association property="emp" resultMap="empMap"></association>
+    	<association property="salgrade" resultMap="salgradeMap"></association>    
+    </resultMap>
+    
+    <select id="getEmpSalgrade" resultMap="empSalgradeMap">
+    	<![CDATA[
+        	select * from emp e,  salgrade s where e.sal between s.losal and s.hisal
+        ]]>
+    </select> 
+    
+    <resultMap  id="empDeptSalMap" type="EmpDeptSalgradeVO">
+    	<association property="emp" resultMap="empMap"></association>
+    	<association property="dept" resultMap="deptMap"></association>
+    	<association property="salgrade" resultMap="salgradeMap"></association>    
+    </resultMap>
+    
+   <select id="getEmpDeptSalgrade" resultMap="empDeptSalMap">
+    	<![CDATA[
+        	select * from emp e, dept d, salgrade s where e.deptno=d.deptno and e.sal between s.losal and s.hisal
+        ]]>
+    </select> 
+    
+</mapper>
