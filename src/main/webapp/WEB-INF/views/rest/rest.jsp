@@ -17,6 +17,7 @@ $(document).ready(function(){
 	//board.get(1021)
 	
 	let boardObj = {
+		bid : 87,
 		bname : "아햏햏",
 		bcontent : "아햏햏하오",
 		btitle : "음매에 ~~~"
@@ -24,9 +25,9 @@ $(document).ready(function(){
 	
 	//board.add(boardObj);
 	
-	board.del(1080);
-	board.del(1086);
-
+	//board.del(1080);
+	//board.del(1086);
+	board.modify(boardObj);
 	
 	
 		
