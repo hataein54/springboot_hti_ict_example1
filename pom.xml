@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.8</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>edu.ict</groupId>
 	<artifactId>ex</artifactId>
@@ -14,18 +15,18 @@
 	<packaging>war</packaging>
 	<name>spring_boot_hjs_ict_example</name>
 	<description>Demo project for Spring Boot</description>
-	
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>
-	
+
 	<repositories>
 		<repository>
 			<id>oracle</id>
 			<url>http://www.datanucleus.org/downloads/maven2/</url>
 		</repository>
 	</repositories>
-	
+
 	<dependencies>
 		<!-- SpringWeb (중요) 웹 서비스를 만드는 데 가장 중요한 모듈이다. 내장 톰캣 뿐 아니라 Spring MVC 패턴을 
 			구현하는 데 필요한 기능이 대부분 들어있다. REST API서버를 만든다면 필수이다. -->
@@ -54,7 +55,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- JSP를 사용하기 위한 라이브러리 추가 -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -65,30 +66,49 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-		
+
 		<!-- 오라클 JDBC 드라이버 -->
- 		<dependency>
+		<dependency>
 			<groupId>oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.3</version>
 		</dependency>
-		
+
 		<!-- 마이바티스-->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-				
-		<!-- log4j 라이브러리 -->	
+
+		<!-- log4j 라이브러리 -->
 		<dependency>
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>
 			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 			<version>1.16</version>
 		</dependency>
-		
-		
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 스프링 부트에서는  jsp 태그를 지원 하지 않기 때문에 직접 입력 해야야함 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+
+
 	</dependencies>
+
 
 	<build>
 		<plugins>
