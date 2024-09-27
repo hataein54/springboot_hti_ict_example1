@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import edu.ict.ex.vo.AuthVO;
+import edu.ict.ex.vo.CartVO;
 import edu.ict.ex.vo.UserVO;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +24,24 @@ public class UserDetailsVO implements UserDetails{
 	private String password;
 	private List<GrantedAuthority> authorities; //권한 = GrantedAuthority 치고 들어가면.
 	
+	private CartVO cart;
+	
 	public UserDetailsVO(UserVO user) {
 		this.setUsername(user.getUsername());
 		this.setPassword(user.getPassword());
 		this.setAuthorities(user);
+	}
+	
+	public UserDetailsVO(UserVO user, CartVO cart) {
+		this.setUsername(user.getUsername());
+		this.setPassword(user.getPassword());
+		this.setAuthorities(user);
+		
+		this.cart=cart;
+	}
+	
+	public CartVO getCart() {
+		return cart;
 	}
 	
 	//UserVO에서 권한을 추출하여 UserDetails에서 요구하는 권한 형식으로 만들어줌
