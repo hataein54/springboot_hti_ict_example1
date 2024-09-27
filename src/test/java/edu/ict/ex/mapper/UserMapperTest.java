@@ -40,14 +40,13 @@ class UserMapperTest {
    @Autowired
    private PasswordEncoder passwordEncoder;
    
-   
-   @Disabled
    @Test
+ //데이터 베이스에 암호화된 값을 집어넣는 함수?
    void testInsertUser() {
       
       UserVO user = new UserVO();
-      user.setUsername("admin2");
-      user.setPassword(passwordEncoder.encode("admin2"));
+      user.setUsername("admin3");
+      user.setPassword(passwordEncoder.encode("admin3"));
       user.setEnabled("1");
       
       userMapper.insertUser(user);
@@ -59,6 +58,7 @@ class UserMapperTest {
       
    }
    
+   
    @Test
    void testMather() {
       
@@ -69,6 +69,8 @@ class UserMapperTest {
 	   assertEquals(isMatch, true);
 
       
+	   
+	   
    }
 
 }
