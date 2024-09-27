@@ -40,6 +40,8 @@
         
       <h1>장바구니 정보<sec:authentication property="principal.cart.product"/></h1>
       <h1>개수<sec:authentication property="principal.cart.count"/></h1>
+      
+      <h1>이메일	<sec:authentication property="principal.email"/></h1>
         
         
         <p><a href="<c:url value="/loginInfo" />">로그인 정보 확인 방법3 가지</a></p>

@@ -24,5 +24,7 @@ public class UserVO {
    private String password;
    private String enabled;
    
+   private String email ="abcd@daum.net";
+   
    private List<AuthVO>authList;
 }
