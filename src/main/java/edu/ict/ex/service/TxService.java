@@ -65,9 +65,9 @@ public class TxService {
 		System.out.println("테스트 3번");
 
 		BoardVO boardVO = new BoardVO();
-		boardVO.setBcontent("트랜잭션5");
-		boardVO.setBname("트랜잭션5");
-		boardVO.setBtitle("트랜잭션5");
+		boardVO.setBcontent("트랜잭션3");
+		boardVO.setBname("트랜잭션3");
+		boardVO.setBtitle("트랜잭션3");
 
 		mapper.insertBoard(boardVO);
 

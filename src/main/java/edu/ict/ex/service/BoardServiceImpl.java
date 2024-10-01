@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.ict.ex.mapper.BoardMapper;
 import edu.ict.ex.page.Criteria;
@@ -59,6 +60,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	//순서있는 기능이 오는 부분 = 비지니스 로직 = 기능이 있는 로직 = 반드시 서비스 단에서 해결
+	@Transactional(rollbackFor=Exception.class)
   	@Override
 	public void writeReply(BoardVO board) {
 		log.info("writeReply()..");
